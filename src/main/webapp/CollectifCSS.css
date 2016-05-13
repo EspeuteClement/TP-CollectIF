@@ -1,0 +1,68 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 13, 2016, 3:02:33 PM
+    Author     : Element
+*/
+
+.navbar {
+    color: #EEE;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    /*letter-spacing: 5px;*/
+    background-color: #222;
+}
+
+.jumbotron h1 {
+    font-size: 100px;
+    font-size: 10vw;
+}
+
+.white-color{
+    color: #EEE;
+    background-color: #EEE;
+}
+
+.jumbotron{
+    height: 100vh;
+}
+.navbar a {
+    color: #EEE;
+}
+.navbar-nav li a:hover {
+    color: #1abc9c !important;
+}
+
+.text-box-custom{
+    max-width: 60%;
+    margin: auto;
+    min-width: 300px;
+    padding: 50px;
+}
+.text-box-custom p{
+    margin:0;
+    padding:0;
+    text-align: left;
+}
+
+
+.login-custom{
+    margin: auto;
+}
+@media screen and (min-width: 700px) {
+    .login-custom{
+        max-width: 500px;
+    }  
+}
+
+.custom-separator {
+    padding-left: 50px;
+    padding-right: 50px;
+}

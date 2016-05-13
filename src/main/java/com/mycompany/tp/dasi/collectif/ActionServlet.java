@@ -10,7 +10,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,99 +45,39 @@ public class ActionServlet extends HttpServlet {
             //System.out.println(typeRequete);
             switch (typeRequete){
                 case "getPage" :
-                    response.sendRedirect(request.getParameter("page"));
+                    response.sendRedirect(PageLinks.get(request.getParameter("page")));
                     break;
                 case "getPageActivite" :
                     response.sendRedirect("activite.html?id="+request.getParameter("id"));
-                case "getActivites" :
-                    printListeActivites(out);
                     break;
-                case "getActivite" :
-                    printActivite(out,Integer.parseInt(request.getParameter("id")));
+                default:
                     break;
             }
             
          }
     }
     
-    protected static void loadPage(HttpServletResponse response,String page)
+    private static final Map<String, String> PageLinks;
+    static
     {
-        switch (page) {
-            case "listeActivites" :
-                
-        }
+        PageLinks = new HashMap<String, String>();
+        PageLinks.put("connexion", "connexion.html");
+        PageLinks.put("enregistrement", "enregistrement.html");
+        PageLinks.put("home", "index.html");
         
-       
     }
     
-    protected static void printListeActivites(PrintWriter out)
-    {
-        //String action = request.getParameter("action");
-        
-        JsonArray activitesJson = new JsonArray();
-        List<Activite> activites = ServiceMetier.recupererActivites();
-        for(Activite a : activites)
-        {
-            JsonObject activiteJson = new JsonObject();
-            activiteJson.addProperty("denomination", a.getDenomination());
-            activiteJson.addProperty("id",a.getId());
-            activitesJson.add(activiteJson);
-        }
-        
-        //Gson gson = new Gson();
-        JsonObject retour = new JsonObject();
-        retour.add("activites", activitesJson);
-        out.println(retour);
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+          throws ServletException, IOException
+    {
         processRequest(request, response);
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+          throws ServletException, IOException
+    {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
-    private void printActivite(PrintWriter out, int parseInt) {
-        Activite activite = ServiceMetier.recupererActiviteById(parseInt);
-        
-        JsonObject retour = new JsonObject();
-        
-        retour.addProperty("denomination", activite.getDenomination());
-        retour.addProperty("parEquipe", activite.isParEquipe());
-        retour.addProperty("nbPart",activite.getNbParticipants());
-        out.println(retour);
-    }
-
 }
