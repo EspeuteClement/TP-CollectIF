@@ -1,3 +1,10 @@
+<%-- 
+    Document   : index
+    Created on : May 13, 2016, 5:18:10 PM
+    Author     : Element
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,23 +18,7 @@
         <link rel="stylesheet" href="CollectifCSS.css"/>
     </head>
     <body>
-        <nav class="navbar">
-            <div class="container">
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
-                  <span class="icon-bar white-color"></span>
-                  <span class="icon-bar white-color"></span>
-                  <span class="icon-bar white-color"></span>
-                </button>
-                <a class="navbar-brand" href="#">Collec'IF</a>
-              </div>
-              <div class="collapse navbar-collapse" id="theNav">
-                <ul class="nav navbar-nav navbar-right">
-                  <li><a href="ActionServlet?action=getPage&page=connexion">Se connecter</a></li>
-                </ul>
-              </div>
-            </div>
-          </nav>
+        <%@ include file="navbar.html" %> 
     
         <div class="jumbotron">
             <div class='jumbotron text-center'>
@@ -51,3 +42,4 @@
         
     </body>
 </html>
+

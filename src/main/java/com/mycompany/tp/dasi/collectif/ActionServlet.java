@@ -42,7 +42,7 @@ public class ActionServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
          try (PrintWriter out = response.getWriter()) {
             String typeRequete = request.getParameter("action");
-            //System.out.println(typeRequete);
+            System.out.println(typeRequete);
             switch (typeRequete){
                 case "getPage" :
                     response.sendRedirect(PageLinks.get(request.getParameter("page")));
@@ -50,6 +50,8 @@ public class ActionServlet extends HttpServlet {
                 case "getPageActivite" :
                     response.sendRedirect("activite.html?id="+request.getParameter("id"));
                     break;
+                case "connect" :
+                    PartieConnexion.connect(request, response);
                 default:
                     break;
             }
@@ -61,9 +63,9 @@ public class ActionServlet extends HttpServlet {
     static
     {
         PageLinks = new HashMap<String, String>();
-        PageLinks.put("connexion", "connexion.html");
-        PageLinks.put("enregistrement", "enregistrement.html");
-        PageLinks.put("home", "index.html");
+        PageLinks.put("connexion", "connexion.jsp");
+        PageLinks.put("enregistrement", "enregistrement.jsp");
+        PageLinks.put("home", "index.jsp");
         
     }
     
@@ -78,6 +80,7 @@ public class ActionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException
     {
+        System.out.println("POST request");
         processRequest(request, response);
     }
 }

@@ -1,3 +1,10 @@
+<%-- 
+    Document   : enregistrement
+    Created on : May 13, 2016, 5:27:09 PM
+    Author     : Element
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -16,51 +23,44 @@ and open the template in the editor.
         <link rel="stylesheet" href="CollectifCSS.css"/>
     </head>
     <body>
-        <nav class="navbar">
-            <div class="container">
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#theNav">
-                  <span class="icon-bar white-color"></span>
-                  <span class="icon-bar white-color"></span>
-                  <span class="icon-bar white-color"></span>
-                </button>
-                <a class="navbar-brand" href="#">Collec'IF</a>
-              </div>
-              <div class="collapse navbar-collapse" id="theNav">
-                <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#">Se connecter</a></li>
-                </ul>
-              </div>
-            </div>
-          </nav>
+        <%@ include file="navbar.html" %> 
         <div class="jumbotron">
             <div class='jumbotron text-center'>
                 <h1>Collect'IF</h1>
-                
+                <h3>Enregistrez vous pour participer à nos évènements !</h3>
                 
                 <form class="form-horizontal login-custom" role="form">
                     <div class="form-group">
-                      <label class="control-label col-sm-2" for="email">Email:</label>
+                      <label class="control-label col-sm-2" for="nom">Nom:</label>
                       <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" placeholder="Mail">
+                        <input type="text" class="form-control" id="nom" placeholder="Dupont">
                       </div>
                     </div>
+                    
                     <div class="form-group">
-                      <label class="control-label col-sm-2" for="id">Numéro d'adhérent:</label>
+                      <label class="control-label col-sm-2" for="prenom">Prénom:</label>
                       <div class="col-sm-10">
-                        <input type="number" class="form-control" id="id" placeholder="Numéro d'adhérent">
+                        <input type="text" class="form-control" id="prenom" placeholder="Paul">
                       </div>
                     </div>
+                    
+                    <div class="form-group">
+                      <label class="control-label col-sm-2" for="adresse">Adresse:</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="adresse" placeholder="20 avenue albert einstein, 69100, Villeurbanne">
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="control-label col-sm-2" for="mail">Mail:</label>
+                      <div class="col-sm-10">
+                        <input type="email" class="form-control" id="mail" placeholder="paul.dupont@mail.com">
+                      </div>
+                    </div>
+                    
                     <div class="form-group">
                       <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                          <label><input type="checkbox"> Remember me</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">Connexion</button>
+                        <button type="submit" class="btn btn-default">S'inscrire</button>
                       </div>
                     </div>
                   </form>
@@ -69,3 +69,4 @@ and open the template in the editor.
         
     </body>
 </html>
+
