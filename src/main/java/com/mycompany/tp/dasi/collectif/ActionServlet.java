@@ -47,8 +47,8 @@ public class ActionServlet extends HttpServlet {
                 case "getPage" :
                     response.sendRedirect(PageLinks.get(request.getParameter("page")));
                     break;
-                case "getPageActivite" :
-                    response.sendRedirect("activite.html?id="+request.getParameter("id"));
+                case "getAdherentDemandes" :
+                    PartieDemandes.printDemandesAdherent(out,Integer.parseInt(request.getParameter("id")));
                     break;
                 case "connect" :
                     PartieConnexion.connect(request, response);

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Historique des demandes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
+    </head>
+    <body>
+        
+        <h1>Collect'IF</h1>
+        <h4>Mes demandes:</h4>
+        <div id='liste'>
+            <span>chargement en cours...</span>
+        </div>
+        
+        <script>
+                var QueryString = function () {
+                // This function is anonymous, is executed immediately and 
+                // the return value is assigned to QueryString!
+                var query_string = {};
+                var query = window.location.search.substring(1);
+                var vars = query.split("&");
+                for (var i=0;i<vars.length;i++) {
+                  var pair = vars[i].split("=");
+                      // If first entry with this name
+                  if (typeof query_string[pair[0]] === "undefined") {
+                    query_string[pair[0]] = decodeURIComponent(pair[1]);
+                      // If second entry with this name
+                  } else if (typeof query_string[pair[0]] === "string") {
+                    var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+                    query_string[pair[0]] = arr;
+                      // If third or later entry with this name
+                  } else {
+                    query_string[pair[0]].push(decodeURIComponent(pair[1]));
+                  }
+                } 
+                  return query_string;
+              }();
+            $(function() {
+                $.ajax({
+                    url: './ActionServlet',
+                    type: 'POST',
+                    data: {
+                        action: 'getAdherentDemandes',
+                        id: QueryString.id
+                    },
+                    dataType: 'json'
+                })
+                .done(function(data) {
+                    var demandes = data.demandes;
+                    var contenuHtml = '<table border=/"1/">';
+                    var i;
+                    for (i = 0; i < demandes.length; i++) {
+                        contenuHtml += '<tr><ul>';
+                        contenuHtml += '<li>'+ demandes[i].activite +" - " + demandes[i].tempE + '</li>';
+                        if(demandes[i].creerE)
+                        {
+                            contenuHtml += '<li>Lieu: '+ demandes[i].lieu + '</li>';
+                            if(demandes[i].equipe)
+                            {
+                                contenuHtml += '<li>Equipe A: '+ demandes[i].equipeA + '</li>';
+                                contenuHtml += '<li>Equipe B: '+ demandes[i].equipeB + '</li>';
+                            }
+                            else
+                            {
+                                contenuHtml += '<li>Participants: '+ demandes[i].participants + '</li>';
+                            }
+                        }
+                        contenuHtml += '<li>Date de demande: '+ demandes[i].tempsD + '</li>';
+                        contenuHtml += '</ul></tr>';
+                    }
+                    contenuHtml += '</table>';
+                    $('#liste').html(contenuHtml);
+                })
+                .fail(function() {
+                    $('#liste').html('ERREUR de chargement');
+                })
+                .always(function() {
+                    //
+                });
+
+            });
+        </script>
+        
+    </body>
+</html>
