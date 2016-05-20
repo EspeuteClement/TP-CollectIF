@@ -31,6 +31,7 @@ and open the template in the editor.
                 
                 
                 <form class="form-horizontal login-custom" role="form" action="ActionServlet" method="post">
+                    <p id="error-msg" class="text-danger text-center"> </p>
                     <input type="hidden" name="action" value="connect" />
                     <div class="form-group">
                       <label class="control-label col-sm-2" for="email">Email:</label>
@@ -59,6 +60,12 @@ and open the template in the editor.
                   </form>
             </div>
         </div>
+        
+        <script>
+        $(function() {
+            $("#error-msg").html("Erreur, identifiant ou mot de passe invalide") ;
+            });    
+        </script>
         
     </body>
 </html>

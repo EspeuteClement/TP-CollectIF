@@ -6,6 +6,7 @@
 package com.mycompany.tp.dasi.collectif;
 
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,12 +26,13 @@ public class PartieConnexion {
         Adherent a = ServiceMetier.connexionAdherent(request.getParameter("email"), Integer.parseInt(request.getParameter("id")));
         if (a!=null)
         {
-            System.out.println(a);
+            System.out.println("Youpi banane");
             //HttpSession session = request.getSession(true);
         }
         else
         {
-            System.out.println("Error, couldn't find client");
+            //response.getWriter().print("Sorry UserName or Password Error!");
+            response.sendRedirect("connexion.jsp?error=true");
         }
         
         
