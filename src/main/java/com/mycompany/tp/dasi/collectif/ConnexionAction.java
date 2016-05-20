@@ -5,10 +5,41 @@
  */
 package com.mycompany.tp.dasi.collectif;
 
+import com.google.gson.JsonObject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import modele.Adherent;
+import service.ServiceMetier;
+
 /**
  *
  * @author Element
  */
-public class ConnexionAction {
+public class ConnexionAction extends Action {
+
+    @Override
+    public void execute(HttpServletRequest request) {
+        System.out.println(request.getParameter("email") + ", " + request.getParameter("id"));
+        Adherent a = ServiceMetier.connexionAdherent(request.getParameter("email"), Integer.parseInt(request.getParameter("id")));
+        
+        JsonObject data = new JsonObject();
+
+        
+        if (a!=null)
+        {
+            System.out.println("Youpi banane");
+            data.addProperty("sucess", true);
+            HttpSession userSession = request.getSession(true);
+            userSession.setAttribute("user", a);
+            //HttpSession session = request.getSession(true);
+        }
+        else
+        {
+            System.out.println("Connexion ratée");
+            data.addProperty("sucess", false);
+        }
+        
+        request.setAttribute("json", data);
+    }
     
 }

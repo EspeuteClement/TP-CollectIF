@@ -10,8 +10,27 @@
       </div>
       <div class="collapse navbar-collapse" id="theNav">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Se connecter</a></li>
+          <li><a href="#" id="connect">Se connecter</a></li>
         </ul>
       </div>
     </div>
 </nav>
+
+<script>
+    $(function() {
+        $.ajax({
+                    url: './ActionServlet',
+                    type: 'POST',
+                    data: {
+                        action: "getUser"
+                    },
+                    dataType: 'json'
+                })
+                .done(function(data) {
+                    if (data.user != null)
+                    {
+                        $("#connect").html(data.user.name);
+                    }
+                })
+    });
+</script>

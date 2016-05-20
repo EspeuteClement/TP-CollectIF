@@ -13,11 +13,13 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import modele.Activite;
 import service.ServiceMetier;
 
@@ -27,7 +29,8 @@ import service.ServiceMetier;
  */
 @WebServlet(name = "ActionServlet", urlPatterns = {"/ActionServlet"})
 public class ActionServlet extends HttpServlet {
-
+    HttpSession userSession;
+            
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,6 +46,7 @@ public class ActionServlet extends HttpServlet {
          try (PrintWriter out = response.getWriter()) {
             String typeRequete = request.getParameter("action");
             System.out.println(typeRequete);
+            Action act;
             switch (typeRequete){
                 case "getPage" :
                     response.sendRedirect(PageLinks.get(request.getParameter("page")));
@@ -51,7 +55,24 @@ public class ActionServlet extends HttpServlet {
                     PartieDemandes.printDemandesAdherent(out,Integer.parseInt(request.getParameter("id")));
                     break;
                 case "connect" :
-                    PartieConnexion.connect(request, response);
+                    act = new ConnexionAction();
+                    act.execute(request);
+                    
+                    out.println(request.getAttribute("json"));
+                    break;
+                case "getUser" :
+                    act = new GetUserAction();
+                    act.execute(request);
+                    
+                    out.println(request.getAttribute("json"));
+                    break;
+                case "testConnect" :
+                    out.println("Test de connexion");
+                    userSession = request.getSession(true);
+                    out.println(userSession.getAttribute("user"));
+                    break;
+                    //RequestDispatcher rd = request.getRequestDispatcher("/connexion.jsp");
+                    //rd.forward(request, response);
                 default:
                     break;
             }

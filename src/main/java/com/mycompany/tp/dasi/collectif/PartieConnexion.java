@@ -22,19 +22,6 @@ public class PartieConnexion {
     static public void connect(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        System.out.println(request.getParameter("email") + ", " + request.getParameter("id"));
-        Adherent a = ServiceMetier.connexionAdherent(request.getParameter("email"), Integer.parseInt(request.getParameter("id")));
-        if (a!=null)
-        {
-            System.out.println("Youpi banane");
-            //HttpSession session = request.getSession(true);
-        }
-        else
-        {
-            //response.getWriter().print("Sorry UserName or Password Error!");
-            response.sendRedirect("connexion.jsp?error=true");
-        }
-        
         
     }
 }

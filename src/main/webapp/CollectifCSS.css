@@ -32,6 +32,8 @@ and open the template in the editor.
 
 .jumbotron{
     height: 100vh;
+    padding-bottom: 0px;
+    margin-bottom : 0px;
 }
 .navbar a {
     color: #EEE;
