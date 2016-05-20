@@ -6,17 +6,27 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>Historique des demandes</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="//code.jquery.com/jquery-1.12.1.min.js"></script>
+        <title>Collect'IF</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="CollectifCSS.css"/>
     </head>
     <body>
         
-        <h1>Collect'IF</h1>
-        <h4>Mes demandes:</h4>
+        <%@ include file="navbar.html" %> 
+        <div class='jumbotron'>
+        <h1 align="center">Collect'IF</h1>
+        <br/>
+        <h3 align="center">Mes demandes:</h3>
+        <br/>
         <div id='liste'>
-            <span>chargement en cours...</span>
+            <table align='center'><tr><td>chargement en cours...</td><tr></table>
+        </div>
+        <br/>
+        <table align='center'><tr><td><button type="submit" class="btn btn-default">Poster une demande</button></td></tr></table>
         </div>
         
         <script>
@@ -44,7 +54,7 @@ and open the template in the editor.
               }();
             $(function() {
                 $.ajax({
-                    url: './ActionServlet',
+                    url: './ActionServletCopie',
                     type: 'POST',
                     data: {
                         action: 'getAdherentDemandes',
@@ -54,26 +64,24 @@ and open the template in the editor.
                 })
                 .done(function(data) {
                     var demandes = data.demandes;
-                    var contenuHtml = '<table border=/"1/">';
+                    var contenuHtml = '<table align="center" width="600" border="2">';
                     var i;
                     for (i = 0; i < demandes.length; i++) {
-                        contenuHtml += '<tr><ul>';
-                        contenuHtml += '<li>'+ demandes[i].activite +" - " + demandes[i].tempE + '</li>';
-                        if(demandes[i].creerE)
+                        contenuHtml += '<tr><td>';
+                        contenuHtml += demandes[i].activite +" - " + demandes[i].tempsE + '<br/>';
+                        contenuHtml += '<ul><li>Lieu: '+ demandes[i].lieu + '</li>';
+                        if(demandes[i].equipe)
                         {
-                            contenuHtml += '<li>Lieu: '+ demandes[i].lieu + '</li>';
-                            if(demandes[i].equipe)
-                            {
-                                contenuHtml += '<li>Equipe A: '+ demandes[i].equipeA + '</li>';
-                                contenuHtml += '<li>Equipe B: '+ demandes[i].equipeB + '</li>';
-                            }
-                            else
-                            {
-                                contenuHtml += '<li>Participants: '+ demandes[i].participants + '</li>';
-                            }
+                            contenuHtml += '<li>Equipe A: '+ demandes[i].equipeA + '</li>';
+                            contenuHtml += '<li>Equipe B: '+ demandes[i].equipeB + '</li>';
                         }
-                        contenuHtml += '<li>Date de demande: '+ demandes[i].tempsD + '</li>';
-                        contenuHtml += '</ul></tr>';
+                        else
+                        {
+                            contenuHtml += '<li>Participants: '+ demandes[i].participants + '</li>';
+                        }
+                        contenuHtml+= '</ul>';
+                        contenuHtml += 'Date de demande: '+ demandes[i].tempsD;
+                        contenuHtml += '</td></tr>';
                     }
                     contenuHtml += '</table>';
                     $('#liste').html(contenuHtml);
@@ -87,6 +95,7 @@ and open the template in the editor.
 
             });
         </script>
+        
         
     </body>
 </html>
