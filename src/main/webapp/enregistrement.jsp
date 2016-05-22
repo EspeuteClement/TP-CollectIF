@@ -30,6 +30,7 @@ and open the template in the editor.
                 <h3>Enregistrez vous pour participer à nos évènements !</h3>
                 
                 <form class="form-horizontal login-custom" role="form">
+                    <p id="error-msg" class="danger"> </p>
                     <div class="form-group">
                       <label class="control-label col-sm-2" for="nom">Nom:</label>
                       <div class="col-sm-10">
@@ -60,12 +61,51 @@ and open the template in the editor.
                     
                     <div class="form-group">
                       <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">S'inscrire</button>
+                        <input id="btnConnect" type="button" value="S'inscrite" onClick="btnCreate();" class="btn btn-default"/>
                       </div>
                     </div>
                   </form>
             </div>
         </div>
+        
+        <script>
+            function btnCreate() {
+
+                $.ajax({
+                    
+                    url: './ActionServlet',
+                    type: 'POST',
+                    data: {
+                        action: "create",
+                        nom: $("#nom").val(),
+                        prenom: $("#prenom").val(),
+                        adresse: $("#adresse").val(),
+                        mail: $("#mail").val()
+                    },
+                    dataType: 'json'
+                })
+                .done(function(data) {
+                    if (data.sucess)
+                    {
+                        window.location.replace("connexion.jsp");
+                    }
+                    else
+                    {
+                        $("#mail").addClass("error");
+                        $("#error-msg").html("Erreur, cette adresse mail est déjà utilisée") ;
+                    }
+
+                })
+                .fail(function() {
+                    $('#listeActivites').html('ERREUR de chargement');
+                })
+                .always(function() {
+                    //
+                });
+
+            }
+            
+        </script>
         
     </body>
 </html>

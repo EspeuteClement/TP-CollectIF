@@ -24,14 +24,13 @@
             <div class='jumbotron text-center'>
                 <h1>Collect'IF</h1>
                 
-                <div class="row">
+
                     <div class="text-box-custom">
                         <p>Vous souhaitez faire une partie de tarot jeudi prochain ? Un match de volley le samedi de la semaine prochaine ?</p>
                         <p>Collect'IF, l'association événementielle locale, vous trouve des co-équipiers et met à votre disposition un local pour votre rencontre !</p>
                         <p>Rejoignez-nous !</p>                        
                     </div>
-  
-                </div>
+ 
 
 
                 <button type="button" class="btn btn-primary">Nous rejoindre !</button>

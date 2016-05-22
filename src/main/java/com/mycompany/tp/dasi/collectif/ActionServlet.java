@@ -57,13 +57,26 @@ public class ActionServlet extends HttpServlet {
                 case "connect" :
                     act = new ConnexionAction();
                     act.execute(request);
-                    
                     out.println(request.getAttribute("json"));
                     break;
                 case "getUser" :
                     act = new GetUserAction();
                     act.execute(request);
-                    
+                    out.println(request.getAttribute("json"));
+                    break;
+                case "affecterLieu" :
+                    act = new AffecterLieuAction();
+                    act.execute(request);
+                    out.println(request.getAttribute("json"));
+                    break;
+                case "getDataAffecterLieu" :
+                    act = new GetDataAffecterLieuAction();
+                    act.execute(request);
+                    out.println(request.getAttribute("json"));
+                    break;
+                case "create" :                   
+                    act = new CreationAction();
+                    act.execute(request);
                     out.println(request.getAttribute("json"));
                     break;
                 case "testConnect" :

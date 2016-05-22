@@ -82,7 +82,7 @@ and open the template in the editor.
                 .done(function(data) {
                     if (data.sucess)
                     {
-                        window.location.replace("ActionServlet?action=testConnect");
+                        window.location.replace("histoDemandes.jsp");
                     }
                     else
                     {
