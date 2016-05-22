@@ -52,7 +52,7 @@ public class ActionServlet extends HttpServlet {
                     response.sendRedirect(PageLinks.get(request.getParameter("page")));
                     break;
                 case "getAdherentDemandes" :
-                    PartieDemandes.printDemandesAdherent(out,Integer.parseInt(request.getParameter("id")));
+                    //PartieDemandes.printDemandesAdherent(out,Integer.parseInt(request.getParameter("id")));
                     break;
                 case "connect" :
                     act = new ConnexionAction();
