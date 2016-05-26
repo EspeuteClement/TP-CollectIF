@@ -26,6 +26,9 @@ and open the template in the editor.
             <table align='center'><tr><td>chargement en cours...</td><tr></table>
         </div>
         </div>
+        <br/>
+        <br/>
+        <br/>
         
         <script>
             $(function() {

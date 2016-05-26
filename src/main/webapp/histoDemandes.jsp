@@ -17,7 +17,7 @@ and open the template in the editor.
     <body>
         
         <%@ include file="navbar.html" %> 
-        <div class='container margins'>
+        <div class='jumbotron'>
         <h1 align="center">Collect'IF</h1>
         <br/>
         <h3 align="center">Mes demandes:</h3>
@@ -30,7 +30,9 @@ and open the template in the editor.
         <div align="center">
             <a class="btn btn-primary" href="posterDemande.jsp">Poster une demande</a>  
         </div>
-        
+        <br/>
+        <br/>
+        <br/>
         </div>
         
         <script>
