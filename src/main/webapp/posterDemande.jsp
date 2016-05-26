@@ -28,24 +28,34 @@ and open the template in the editor.
                 <td>
                     <div id='activites'>
                     <select>
-                    <option value="enCharge">chargement en cours...</option>
+                        <option value="0">chargement en cours...</option>
                     </select>
                     </div>
                 </td>
             </tr>
-            
             <tr>
                 <td><label class="control-label col-sm-2" for="date">Date:</label></td>
-                <td><input id="jour" value="JJ"/> - <input id="mois" value="MM"/> - <input id="annee" value="AAAA"/></td>
+                <td><input maxlength="2" id="jour" value="JJ"/> - <input maxlength="2" id="mois" value="MM"/> - <input maxlength="4" id="annee" value="AAAA"/></td>
             </tr>
             <tr><td>
-                <table align='center'><tr><td><button type="submit" class="btn btn-default">Poster une demande</button></td></tr></table>
+                <tr><td><input id="btnPoster" type="button" value="Poster une demande" onClick="btnPoster();" class="btn btn-default"/></td></tr>
             </td></tr>
         </table>
     
         
         
         <script>
+            $.urlParam = function(name){
+                var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+                if (results===null){
+                   return null;
+                }
+                else{
+                   return results[1] || 0;
+                }
+            };
+            
+            
             $(function() {
                 $.ajax({
                     url: './ActionServletCopie',
@@ -57,10 +67,10 @@ and open the template in the editor.
                 })
                 .done(function(data) {
                     var activites = data.activites;
-                    var contenuHtml = '<select>';
+                    var contenuHtml = '<select id="choixActivite">';
                     var i;
                     for (i = 0; i < activites.length; i++) {
-                        contenuHtml += '<option value="'+ activites[i].id +'">' + activites[i].activite + '</option>';
+                        contenuHtml += '<option value="'+ activites[i].id +'">[' +activites[i].id+'] '+ activites[i].activite + '</option>';
                     }
                     contenuHtml +="</select>";
                     $('#activites').html(contenuHtml);
@@ -73,6 +83,44 @@ and open the template in the editor.
                 });
 
             });
+            
+            
+            function btnPoster() {
+                alert($("#jour").val());
+                alert($("#mois").val());
+                alert($("#annee").val());
+                $.ajax({
+                    
+                    url: './ActionServletCopie',
+                    type: 'POST',
+                    data: {
+                        action: "poster",
+                        adherent: $.urlParam("id"),
+                        activite: $("#choixActivite").val(),
+                        jour: $("#jour").val(),
+                        mois: $("#mois").val(),
+                        annee: $("#annee").val()
+                    },
+                    dataType: 'json'
+                })
+                .done(function(data) {
+                    if (data.succes.succes)
+                    {
+                        var replace="histoDemandes.jsp?id="+$.urlParam("id");
+                        window.location.replace(replace);
+                    }
+                    else
+                    {
+                        $("#tab").html("Erreur de Post") ;
+                    }
+                })
+                .fail(function() {
+                    $('#liste').html('ERREUR de Post');
+                })
+                .always(function() {
+                    //
+                });
+            };
         </script>    
     </body>
 </html>
