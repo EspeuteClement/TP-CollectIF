@@ -1,0 +1,26 @@
+Analyse critique du dossier reçu:
+
+1.Les IHM réalisent les fonctions basiques mais restent un peu trop simple au niveau de conception.
+
+2.On n'a pas prévu de bouton pour la déconnexion. Nous l'avons ajouté en haut à droite de la barre quand on se connecte, à la place des deux boutons "Mes demandes" et "Poster une demande" prévus dans le dossier, qui nous semblent un peu inutile puisque le site est assez simple, on se bascule surtout entre ces deux pages et il y a déjà des boutons pour passer d'une à l'autre.
+
+3.Pour la page de la liste de demandes. Le blanc qui reste pour les demandes qui ne sont pas encore passées à un évènement n'est pas très beau. Nous l'avons remplacé par des lignes comme "Lieu: undefined" pour indiquer que ces informations ne sont pas encore données.
+
+4.Ce n'est pas un critique mais un changement. Dans la page de poster une demande, au lieu de prévoir une seule case de saisie pour la date, nous avons fait trois cases pour le jour, le mois et l'année pour mieux former la valeur d'entrée.
+
+5.Pour la page d'affecter un lieu, nous avons mis le bouton "Affecter le lieu" en haut de la carte au lieu d'au bout de la page puisque la carte est grande et on trouve moins facilement le bouton si c'est tout bas.
+
+6.Pour le service recupererAdherentDemandes, on peut très bien utiliser directement getDemandes dans la classe Adhérent.
+
+7.Il manque un service pour récuperer des activités par ID d'adhérent.
+
+
+Analyse critique de notre dossier de spécification
+
+1.C'est mieux de faire un dialogue séquence(faire d'abord connecter le client, puis faire choisir le restaurtant) qu'un dialogue plutôt libre(on peut se connecter n'importe quand avant la validation de la commande).
+
+2.Il manque un peu d'explication détaillée sur la fonction de différentes fenêtres (surtout la partie pour le gestionnaire, c'est même mal conçu car c'est un peu difficile de comprendre la fonction et d'obtenir d'un coup l'information qu'on veut, et il en manque l'étape de connexion pour le gestionnaire).
+
+3.Quelques éléments dans les fenêtres ne sont pas très clairement montrés(par exemple le titre choix du restaurant est un label, mais comme c'est dans un carré, cela peut être compris comme un bouton pour le chois)
+
+4.Il manque un service pour filtrer le nom du restaurant par le nom pour le champ texte de la page "choix du restaurant".
