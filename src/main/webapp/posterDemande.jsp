@@ -35,12 +35,16 @@ and open the template in the editor.
             </tr>
             <tr>
                 <td><label class="control-label col-sm-2" for="date">Date:</label></td>
-                <td><input maxlength="2" id="jour" value="JJ"/> - <input maxlength="2" id="mois" value="MM"/> - <input maxlength="4" id="annee" value="AAAA"/></td>
+                <td><input maxlength="2" id="jour" placeholder="JJ"/> - <input maxlength="2" id="mois" placeholder="MM"/> - <input maxlength="4" id="annee" placeholder="AAAA"/></td>
             </tr>
             <tr><td>
-                <tr><td><input id="btnPoster" type="button" value="Poster une demande" onClick="btnPoster();" class="btn btn-default"/></td></tr>
+                <tr><td></td></tr>
             </td></tr>
         </table>
+        <br/>
+        <div align="center" >
+            <input class="btn btn-primary" id="btnPoster" type="button" value="Poster une demande" onClick="btnPoster();" class="btn btn-default"/>
+        </div>
     
         
         
@@ -58,7 +62,7 @@ and open the template in the editor.
             
             $(function() {
                 $.ajax({
-                    url: './ActionServletCopie',
+                    url: './ActionServlet',
                     type: 'POST',
                     data: {
                         action: 'posterDemande',
@@ -86,12 +90,9 @@ and open the template in the editor.
             
             
             function btnPoster() {
-                alert($("#jour").val());
-                alert($("#mois").val());
-                alert($("#annee").val());
                 $.ajax({
                     
-                    url: './ActionServletCopie',
+                    url: './ActionServlet',
                     type: 'POST',
                     data: {
                         action: "poster",

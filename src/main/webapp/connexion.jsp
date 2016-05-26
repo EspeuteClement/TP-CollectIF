@@ -73,11 +73,18 @@ and open the template in the editor.
                     dataType: 'json'
                 })
                 .done(function(data) {
-
+                    if (data.admin){
+                        window.location.replace("printEvenements.jsp");
+                    }
+                    else
+                    {
+                        window.location.replace("histoDemandes.jsp");
+                    }
+                    
 
                 })
                 .fail(function() {
-                    $('#listeActivites').html('ERREUR de chargement');
+                    //$('#listeActivites').html('ERREUR de chargement');
                 })
                 .always(function() {
                     //

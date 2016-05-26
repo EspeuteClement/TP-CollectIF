@@ -10,6 +10,7 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import modele.Adherent;
 import modele.Evenement;
 import modele.EvenementParEquipe;
@@ -29,17 +30,22 @@ public class GetDataAffecterLieuAction extends Action {
         JsonArray jsonLieux = new JsonArray();
         
         List<Lieu> lieux =  ServiceMetier.recupererLieux();
+        HttpSession userSession = request.getSession(true);
         
-        for (Lieu l : lieux)
+        Long _id = ((Adherent) userSession.getAttribute("user")).getId();
+        
+        if (_id == 39)
         {
-            JsonObject obj = new JsonObject();
-            obj.addProperty("nom", l.getDenomination());
-            obj.addProperty("lat", l.getLatitude());
-            obj.addProperty("lng", l.getLongitude());
-            obj.addProperty("id", l.getId());
-            
-            jsonLieux.add(obj);
-        }
+            for (Lieu l : lieux)
+            {
+                JsonObject obj = new JsonObject();
+                obj.addProperty("nom", l.getDenomination());
+                obj.addProperty("lat", l.getLatitude());
+                obj.addProperty("lng", l.getLongitude());
+                obj.addProperty("id", l.getId());
+
+                jsonLieux.add(obj);
+            }
         
         data.add("lieux",jsonLieux);
         
@@ -97,10 +103,13 @@ public class GetDataAffecterLieuAction extends Action {
                 jsonEquipes.add(jsonJoueurs);
             }
             jsonEvent.add("equipes", jsonEquipes);
-
+            
+        }
+        data.add("event",jsonEvent);
         }
         
-        data.add("event",jsonEvent);
+        
+        
         request.setAttribute("json", data);
     }
 }

@@ -31,6 +31,10 @@ public class ConnexionAction extends Action {
             data.addProperty("sucess", true);
             HttpSession userSession = request.getSession(true);
             userSession.setAttribute("user", a);
+            
+            if (a.getId() == 39){
+                data.addProperty("admin", true);
+            }
             //HttpSession session = request.getSession(true);
         }
         else

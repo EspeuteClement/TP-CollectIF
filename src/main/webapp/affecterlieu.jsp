@@ -167,7 +167,7 @@ and open the template in the editor.
                     dataType: 'json'
                 })
                 .done(function(data) {
-                    alert("lieuValide");
+                    window.location.replace("printEvenements.jsp");
                 })
                 .fail(function() {
                     $('#listeActivites').html('ERREUR de chargement');

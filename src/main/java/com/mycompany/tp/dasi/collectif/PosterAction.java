@@ -7,6 +7,8 @@ package com.mycompany.tp.dasi.collectif;
 
 import java.sql.Date;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import modele.Adherent;
 import modele.Demande;
 import service.ServiceMetier;
 
@@ -21,8 +23,11 @@ public class PosterAction extends Action{
         int mois = Integer.parseInt(request.getParameter("mois"));
         int jour = Integer.parseInt(request.getParameter("jour"));
         int activite = Integer.parseInt(request.getParameter("activite"));
-        int adherent =Integer.parseInt(request.getParameter("adherent"));
-        Date date = new Date(annee,mois,jour);
+        HttpSession userSession = request.getSession(true);
+        Long adherent = ((Adherent) userSession.getAttribute("user")).getId();
+        
+        Date date = new Date(annee-1900,mois-1,jour);
+        
         boolean s=ServiceMetier.posterDemande(adherent, activite, date);
         request.setAttribute("succes",s);
         System.out.println(s);

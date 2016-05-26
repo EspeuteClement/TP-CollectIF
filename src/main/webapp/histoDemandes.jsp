@@ -17,7 +17,7 @@ and open the template in the editor.
     <body>
         
         <%@ include file="navbar.html" %> 
-        <div class='jumbotron'>
+        <div class='container margins'>
         <h1 align="center">Collect'IF</h1>
         <br/>
         <h3 align="center">Mes demandes:</h3>
@@ -26,7 +26,11 @@ and open the template in the editor.
             <table align='center'><tr><td>chargement en cours...</td><tr></table>
         </div>
         <br/>
-        <table align='center'><tr><td><button type="submit" class="btn btn-default">Poster une demande</button></td></tr></table>
+        
+        <div align="center">
+            <a class="btn btn-primary" href="posterDemande.jsp">Poster une demande</a>  
+        </div>
+        
         </div>
         
         <script>
@@ -54,7 +58,7 @@ and open the template in the editor.
               }();
             $(function() {
                 $.ajax({
-                    url: './ActionServletCopie',
+                    url: './ActionServlet',
                     type: 'POST',
                     data: {
                         action: 'getAdherentDemandes',

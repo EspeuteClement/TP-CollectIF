@@ -20,7 +20,7 @@ and open the template in the editor.
         <div class='jumbotron'>
         <h1 align="center">Collect'IF</h1>
         <br/>
-        <h3 align="center">Les evenements:</h3>
+        <h3 align="center">Les évènements:</h3>
         <br/>
         <div id='liste'>
             <table align='center'><tr><td>chargement en cours...</td><tr></table>
@@ -30,7 +30,7 @@ and open the template in the editor.
         <script>
             $(function() {
                 $.ajax({
-                    url: './ActionServletCopie',
+                    url: './ActionServlet',
                     type: 'POST',
                     data: {
                         action: 'printEvenements',
@@ -57,7 +57,7 @@ and open the template in the editor.
                         contenuHtml+= '</ul>';
                         if(evenements[i].avoirLieu === false)
                         {
-                            contenuHtml += "<button>Affecter un lieu</button>";
+                            contenuHtml += '<div align="center"><a class="btn btn-primary" href="affecterlieu.jsp?id=' + evenements[i].id + '"> Affecter un lieu</a></div>';
                         }
                         contenuHtml += '</td></tr>';
                     }
