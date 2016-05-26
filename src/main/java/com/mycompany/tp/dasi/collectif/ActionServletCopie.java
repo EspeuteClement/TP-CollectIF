@@ -132,6 +132,77 @@ public class ActionServletCopie extends HttpServlet {
                     retour.add("activites", demandesJson);
                     out.println(retour);
                     break;
+                case "printEvenements" :
+                    action = new PrintEvenementsAction();
+                    action.execute(request);
+                    List<Evenement> eve = (List<Evenement>)request.getAttribute("evenements");
+                    demandesJson = new JsonArray();
+                    for(Evenement e : eve)
+                    {
+                        JsonObject demandeJson = new JsonObject();
+                        demandeJson.addProperty("activite",e.getActivite().getDenomination());
+                        demandeJson.addProperty("tempsE",e.getDate().toString());
+                        if(e.getLieu()!=null)
+                        {
+                            demandeJson.addProperty("avoirLieu",true);
+                            demandeJson.addProperty("lieu",e.getLieu().getAdresse());
+                        }
+                        else
+                        {
+                            demandeJson.addProperty("avoirLieu",false);
+                            demandeJson.addProperty("lieu","A definir");
+                        }
+                        if(e.getClass().equals(EvenementParEquipe.class))
+                        {
+                            demandeJson.addProperty("equipe",true);
+                            EvenementParEquipe epe= (EvenementParEquipe) e;
+                            String equipeA="";
+                            int i;
+                            for(i=0;i<epe.getEquipeA().getParticipants().size();i++)
+                            {
+                                Adherent a = epe.getEquipeA().getParticipants().get(i);
+                                equipeA += a.getPrenomNom();
+                                if(i!=epe.getEquipeA().getParticipants().size()-1)
+                                {
+                                    equipeA += " & ";
+                                }
+                            }
+                            demandeJson.addProperty("equipeA",equipeA);
+                            String equipeB="";
+                            for(i=0;i<epe.getEquipeB().getParticipants().size();i++)
+                            {
+                                Adherent a = epe.getEquipeB().getParticipants().get(i);
+                                equipeB += a.getPrenomNom();
+                                if(i!=epe.getEquipeB().getParticipants().size()-1)
+                                {
+                                    equipeB += " & ";
+                                }
+                            }
+                            demandeJson.addProperty("equipeB",equipeB);
+                        }
+                        else
+                        {
+                            demandeJson.addProperty("equipe",false);
+                            EvenementSansEquipe ese= (EvenementSansEquipe) e;
+                            String participants="";
+                            int i;
+                            for(i=0;i<ese.getParticipants().size();i++)
+                            {
+                                Adherent a = ese.getParticipants().get(i);
+                                participants += a.getPrenomNom();
+                                if(i!=ese.getParticipants().size()-1)
+                                {
+                                    participants += " & ";
+                                }
+                            }
+                            demandeJson.addProperty("participants",participants);
+                        }
+                        demandesJson.add(demandeJson);
+                    }
+                    retour = new JsonObject();
+                    retour.add("evenements", demandesJson);
+                    out.println(retour);
+                    break;
                 default:
                     break;
             }

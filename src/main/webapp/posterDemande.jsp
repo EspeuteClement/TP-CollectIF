@@ -33,10 +33,9 @@ and open the template in the editor.
                     </div>
                 </td>
             </tr>
-            
             <tr>
                 <td><label class="control-label col-sm-2" for="date">Date:</label></td>
-                <td><input id="jour" value="JJ"/> - <input id="mois" value="MM"/> - <input id="annee" value="AAAA"/></td>
+                <td><input maxlength="2" id="jour" value="JJ"/> - <input maxlength="2" id="mois" value="MM"/> - <input maxlength="4" id="annee" value="AAAA"/></td>
             </tr>
             <tr><td>
                 <table align='center'><tr><td><button type="submit" class="btn btn-default">Poster une demande</button></td></tr></table>
