@@ -43,21 +43,21 @@ and open the template in the editor.
                     var i;
                     for (i = 0; i < evenements.length; i++) {
                         contenuHtml += '<tr><td>';
-                        contenuHtml += evenements[i].activite +" - " + evenements.tempsE + '<br/>';
+                        contenuHtml += evenements[i].activite +" - " + evenements[i].tempsE + '<br/>';
                         contenuHtml += '<ul><li>Lieu: '+ evenements[i].lieu + '</li>';
                         if(evenements[i].equipe)
                         {
-                            contenuHtml += '<li>Equipe A: '+ demandes[i].equipeA + '</li>';
-                            contenuHtml += '<li>Equipe B: '+ demandes[i].equipeB + '</li>';
+                            contenuHtml += '<li>Equipe A: '+ evenements[i].equipeA + '</li>';
+                            contenuHtml += '<li>Equipe B: '+ evenements[i].equipeB + '</li>';
                         }
                         else
                         {
-                            contenuHtml += '<li>Participants: '+ demandes[i].participants + '</li>';
+                            contenuHtml += '<li>Participants: '+ evenements[i].participants + '</li>';
                         }
                         contenuHtml+= '</ul>';
-                        if(!evenements[i].avoirLieu)
+                        if(evenements[i].avoirLieu === false)
                         {
-                            contenuHtml += "<button type="submit" class="btn btn-default">Affecter un lieu</button>";
+                            contenuHtml += "<button>Affecter un lieu</button>";
                         }
                         contenuHtml += '</td></tr>';
                     }

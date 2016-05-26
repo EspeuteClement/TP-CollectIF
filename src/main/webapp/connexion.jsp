@@ -80,14 +80,7 @@ and open the template in the editor.
                     dataType: 'json'
                 })
                 .done(function(data) {
-                    if (data.sucess)
-                    {
-                        window.location.replace("histoDemandes.jsp");
-                    }
-                    else
-                    {
-                        $("#error-msg").html("Erreur, identifiant ou mot de passe invalide") ;
-                    }
+
 
                 })
                 .fail(function() {

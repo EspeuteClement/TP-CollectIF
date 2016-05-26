@@ -203,6 +203,15 @@ public class ActionServletCopie extends HttpServlet {
                     retour.add("evenements", demandesJson);
                     out.println(retour);
                     break;
+                case "poster":
+                    action = new PosterAction();
+                    action.execute(request);
+                    retour = new JsonObject();
+                    JsonObject succes = new JsonObject();
+                    succes.addProperty("succes", (Boolean) request.getAttribute("succes"));
+                    retour.add("succes",succes);
+                    out.println(retour);
+                    break;
                 default:
                     break;
             }
