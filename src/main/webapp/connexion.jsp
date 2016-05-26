@@ -49,13 +49,6 @@ and open the template in the editor.
                     </div>
                     <div class="form-group">
                       <div class="col-sm-offset-2 col-sm-10">
-                        <div class="checkbox">
-                          <label><input type="checkbox"> Remember me</label>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-sm-offset-2 col-sm-10">
                           <input id="btnConnect" type="button" value="Connection" onClick="btnConnect();" class="btn btn-default"/>
                         <!--<button type="submit" class="btn btn-default">Connexion</button>-->
                       </div>

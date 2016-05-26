@@ -6,7 +6,7 @@
           <span class="icon-bar white-color"></span>
           <span class="icon-bar white-color"></span>
         </button>
-        <a class="navbar-brand" href="index.jsp">Collec'IF</a>
+        <a class="navbar-brand" href="index.jsp">Collect'IF</a>
       </div>
       <div class="collapse navbar-collapse" id="theNav">
         <ul class="nav navbar-nav navbar-right">
@@ -30,6 +30,7 @@
                     if (data.user != null)
                     {
                         $("#connect").html(data.user.name);
+                        $("#connect").attr("href","#");
                     }
                 })
     });

@@ -35,30 +35,32 @@ and open the template in the editor.
                 <div class="container">
                    <div class="row"> 
                         <div class="event-box col-sm-8">
-                        <p id="event-name"> Nom de l'event </p>
-                        <p id="event-lieu"> Lieu de d'event</p>
-                        <p id="event-equipeA"> Bob LEROUX</p>
-                        <p id="event-equipeB"> John LEMON</p>
+                        <p id="event-name"> loading ... </p>
+                        <p id="event-lieu"></p>
+                        <p id="event-equipeA"></p>
+                        <p id="event-equipeB"></p>
                         </div>
 
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="sel1">Lieu :</label>
+                                <label for="choixLieu">Lieu :</label>
                                 <select class="form-control" id="choixLieu" onchange="onLieuSelect();">
                                   <option value="undefined">Chargement des lieux en cours ...</option>
                                 </select>
                             </div>
+                            
+                            <input id="btnConnect" type="button" value="Affecter le lieu" onClick="btnAffecter();" class="btn btn-default"/>
                         </div>
                     </div> 
                     
                     
                     
-                    <div class="row top-buffer">
+                    <!--<div class="row top-buffer">
                       <div class="col-sm-12">
-                          <input id="btnConnect" type="button" value="Affecter le lieu" onClick="btnAffecter();" class="btn btn-default"/>
-                        <!--<button type="submit" class="btn btn-default">Connexion</button>-->
+                          
+                       
                       </div>
-                    </div>
+                    </div> -->
                 </div>
                 
                 <div class="top-buffer">
@@ -84,6 +86,8 @@ and open the template in the editor.
                 }
             };
             var _data;
+            
+            // Page load
             $(function() {
                 $.ajax({
                     
@@ -149,8 +153,7 @@ and open the template in the editor.
                 });
 
             });
-            
-            
+              
             function btnAffecter() {
                 $.ajax({
                     
@@ -230,38 +233,19 @@ and open the template in the editor.
 
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: 45.7601424, lng: 4.8961779},
-                    zoom: 13
+                    zoom: 13,
+                    scrollwheel: false,
+                        navigationControl: false,
+                        mapTypeControl: false,
+                        scaleControl: false,
+                        draggable: false,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
                 });
+                
+                
 
                 var infowindow = makeInfoWindow('');
                 
-                
-                
-                /*var marker = new google.maps.Marker({
-                    map: map,
-                    position: {lat: 45.782122, lng: 4.872735},
-                    title: "Département IF, INSA de Lyon",
-                    icon: {url: './image/bird.png', scaledSize: new google.maps.Size(32, 32)}
-                });
-
-                marker.addListener('click', function() {
-
-                    infowindow.setContent('<div>Information: ' + marker.title + '</div>');
-                    infowindow.open(map, marker);
-                });
-
-                var marker2 = new google.maps.Marker({
-                    map: map,
-                    position: {lat: 45.782592, lng: 4.878238},
-                    title: "Entrée principale, INSA de Lyon",
-                    icon: {url: './image/snake.png', scaledSize: new google.maps.Size(32, 32)}
-                });
-
-                marker2.addListener('click', function() {
-
-                    infowindow.setContent('<div>Information: ' + marker2.title + '</div>');
-                    infowindow.open(map, marker2);
-                });*/
             };
             
         </script>

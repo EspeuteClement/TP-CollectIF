@@ -33,7 +33,7 @@
  
 
 
-                <button type="button" class="btn btn-primary">Nous rejoindre !</button>
+                <a class="btn btn-primary" href="ActionServlet?action=getPage&page=enregistrement">S'inscrire</a>
                 <span class="custom-separator"></span>
                 <a class="btn btn-primary" href="ActionServlet?action=getPage&page=connexion">Se connecter</a>
             </div>
